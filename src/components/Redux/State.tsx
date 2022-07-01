@@ -1,10 +1,35 @@
 import React from "react";
-import {DialogsPropsType} from "../Dialogs/Dialogs";
-import {MyPostsType} from "../Profile/Posts/MyPosts";
+
+type PostsType = {
+    id: number
+    imageAddress: string
+    text: string
+    like: number
+    dislike: number
+}
+
+type DialogsType = {
+    id: number
+    name: string
+}
+
+type MessagesType = {
+    id: number
+    message: string
+}
+
+type ProfilePageType = {
+    posts: Array<PostsType>
+}
+
+type DialogsPageType = {
+    dialogs:  Array<DialogsType>
+    messages: Array<MessagesType>
+}
 
 type RootStateType = {
-    profilePage: MyPostsType
-    dialogsPage: DialogsPropsType
+    profilePage: ProfilePageType
+    dialogsPage: DialogsPageType
 }
 
 export let state: RootStateType = {
@@ -43,4 +68,15 @@ export let state: RootStateType = {
             {id: 5, message: "I am learn react"},
         ]
     }
+}
+
+export const addPost = (newPostMessage: string) => {
+    let newPost = {
+        id: 3,
+        imageAddress: "https://e7.pngegg.com/pngimages/340/946/png-clipart-avatar-user-computer-icons-software-developer-avatar-child-face.png",
+        text: newPostMessage,
+        like: 0,
+        dislike: 0
+    };
+    state.profilePage.posts.push(newPost);
 }

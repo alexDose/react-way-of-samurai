@@ -1,12 +1,20 @@
-import React from "react";
+import React, {createRef} from "react";
 import s from "../Profile.module.css";
 import {Post, PostType} from "./Post";
 
 export type MyPostsType = {
     posts: Array<PostType>
+    addPost: () => void
 }
 
 export const MyPosts = (props: MyPostsType) => {
+
+    const ref = createRef()
+
+    const addPost = () => {
+        let text;
+        props.addPost()
+    }
 
     return (
         <div>
@@ -14,7 +22,7 @@ export const MyPosts = (props: MyPostsType) => {
             <div>
                 New Post
                 <textarea></textarea>
-                <button>send</button>
+                <button onClick={addPost}>send</button>
                 <button>remove</button>
             </div>
             <div className={s.posts}>
