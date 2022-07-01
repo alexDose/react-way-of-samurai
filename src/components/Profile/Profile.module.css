@@ -1,0 +1,22 @@
+.content {
+    grid-area: c;
+}
+.avatar {
+    width: 100px;
+}
+.ava {
+    margin-top: 10px;
+    width: 50px;
+    border-radius: 50px;
+}
+.imageLike {
+    padding: 0 5px;
+    width: 20px;
+}
+.likeDislike {
+    padding: 0 5px;
+    display: inline;
+}
+i {
+    margin-bottom: 15px;
+}
