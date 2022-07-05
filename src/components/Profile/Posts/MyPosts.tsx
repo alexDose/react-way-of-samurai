@@ -4,7 +4,7 @@ import {Post, PostType} from "./Post";
 
 export type MyPostsType = {
     posts: Array<PostType>
-    addPost: () => void
+    //addPost: (newPostMessage: string) => void
 }
 
 export const MyPosts = (props: MyPostsType) => {
@@ -13,7 +13,7 @@ export const MyPosts = (props: MyPostsType) => {
 
     const addPost = () => {
         let text;
-        props.addPost()
+        //props.addPost()
     }
 
     return (

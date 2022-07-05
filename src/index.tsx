@@ -5,6 +5,6 @@ import {App} from './App';
 import {addPost, state} from "./components/Redux/State";
 
 ReactDOM.render(
-    <App dialogs={state.dialogsPage.dialogs} messages={state.dialogsPage.messages} posts={state.profilePage.posts} addPost={() => addPost}/>,
+    <App state={state}/>,
   document.getElementById('root')
 );

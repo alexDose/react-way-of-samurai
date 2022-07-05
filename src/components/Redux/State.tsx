@@ -18,16 +18,16 @@ type MessagesType = {
     message: string
 }
 
-type ProfilePageType = {
+export type ProfilePageType = {
     posts: Array<PostsType>
 }
 
-type DialogsPageType = {
+export type DialogsPageType = {
     dialogs:  Array<DialogsType>
     messages: Array<MessagesType>
 }
 
-type RootStateType = {
+export type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
 }
