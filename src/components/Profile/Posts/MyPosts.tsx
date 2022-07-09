@@ -1,4 +1,4 @@
-import React, {createRef} from "react";
+import React, {createRef, LegacyRef, RefObject, useRef} from "react";
 import s from "../Profile.module.css";
 import {Post, PostType} from "./Post";
 
@@ -9,11 +9,13 @@ export type MyPostsType = {
 
 export const MyPosts = (props: MyPostsType) => {
 
-    const ref = createRef()
+    const newPostElements = useRef<HTMLTextAreaElement>(null)
 
     const addPost = () => {
-        let text;
-        //props.addPost()
+        // if(newPostElements.current) {
+            let text = newPostElements.current?.value
+            //props.addPost()
+        // }
     }
 
     return (
@@ -21,7 +23,7 @@ export const MyPosts = (props: MyPostsType) => {
             My posts
             <div>
                 New Post
-                <textarea></textarea>
+                <textarea ref={newPostElements}></textarea>
                 <button onClick={addPost}>send</button>
                 <button>remove</button>
             </div>
