@@ -1,5 +1,5 @@
 import React from "react";
-import {rerenderEntireTree} from "../../index";
+import {rerenderEntireTree} from "../../render";
 
 type PostsType = {
     id: number
@@ -21,6 +21,8 @@ type MessagesType = {
 
 export type ProfilePageType = {
     posts: Array<PostsType>
+    newPostText: string
+
 }
 
 export type DialogsPageType = {
@@ -50,7 +52,8 @@ export let state: RootStateType = {
                 like: 4,
                 dislike: 6
             }
-        ]
+        ],
+        newPostText: "hello"
     },
     dialogsPage: {
         dialogs: [
@@ -71,14 +74,20 @@ export let state: RootStateType = {
     }
 }
 
-export const addPost = (newPostMessage: string) => {
+export const addPost = () => {
     let newPost: PostsType = {
         id: 3,
         imageAddress: "https://e7.pngegg.com/pngimages/340/946/png-clipart-avatar-user-computer-icons-software-developer-avatar-child-face.png",
-        text: newPostMessage,
+        text: state.profilePage.newPostText,
         like: 0,
         dislike: 0
     };
     state.profilePage.posts.push(newPost);
+    state.profilePage.newPostText = ""
+    rerenderEntireTree(state)
+}
+
+export const updateNewPostText = (newPostText: string) => {
+    state.profilePage.newPostText = newPostText
     rerenderEntireTree(state)
 }
