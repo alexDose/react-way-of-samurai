@@ -1,4 +1,5 @@
 import React from "react";
+import {rerenderEntireTree} from "../../index";
 
 type PostsType = {
     id: number
@@ -71,7 +72,7 @@ export let state: RootStateType = {
 }
 
 export const addPost = (newPostMessage: string) => {
-    let newPost = {
+    let newPost: PostsType = {
         id: 3,
         imageAddress: "https://e7.pngegg.com/pngimages/340/946/png-clipart-avatar-user-computer-icons-software-developer-avatar-child-face.png",
         text: newPostMessage,
@@ -79,4 +80,5 @@ export const addPost = (newPostMessage: string) => {
         dislike: 0
     };
     state.profilePage.posts.push(newPost);
+    rerenderEntireTree(state)
 }

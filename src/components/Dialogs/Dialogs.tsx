@@ -2,7 +2,7 @@ import React from "react";
 import s from "./Dialogs.module.css"
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Messages/Message";
-import {DialogsPageType, RootStateType} from "../Redux/State";
+import {DialogsPageType} from "../Redux/State";
 
 export type DialogsType = {
     id: number
