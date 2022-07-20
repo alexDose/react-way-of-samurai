@@ -1,5 +1,10 @@
-import React from "react";
-import {rerenderEntireTree} from "../../render";
+let rerenderEntireTree = (state: RootStateType) => {
+
+}
+
+export const subscribe = (callback: () => void) => {
+    rerenderEntireTree = callback
+}
 
 type PostsType = {
     id: number
@@ -73,6 +78,8 @@ export let state: RootStateType = {
         ]
     }
 }
+//@ts-ignore
+window.state = state
 
 export const addPost = () => {
     let newPost: PostsType = {
