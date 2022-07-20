@@ -89,8 +89,10 @@ export const addPost = () => {
         like: 0,
         dislike: 0
     };
-    state.profilePage.posts.push(newPost);
-    state.profilePage.newPostText = ""
+    if (state.profilePage.newPostText) {
+        state.profilePage.posts.push(newPost);
+        state.profilePage.newPostText = ""
+    }
     rerenderEntireTree(state)
 }
 
