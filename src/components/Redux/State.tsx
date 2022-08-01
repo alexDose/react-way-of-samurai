@@ -1,5 +1,7 @@
 const ADD_POST = "ADD_POST"
 const UPDATE_NEW_POST_TEXT = "UPDATE_NEW_POST_TEXT"
+const SEND_MESSAGE_BODY = "SEND_MESSAGE_BODY"
+const UPDATE_NEW_MESSAGE_BODY = "UPDATE_NEW_MESSAGE_BODY"
 
 type PostsType = {
     id: number
@@ -27,6 +29,7 @@ export type ProfilePageType = {
 export type DialogsPageType = {
     dialogs: Array<DialogsType>
     messages: Array<MessagesType>
+    newMessageBody: string
 }
 
 export type RootStateType = {
@@ -39,8 +42,10 @@ export type StoreType = {
     subscribe: (callback: () => void) => void
     rerenderEntireTree: () => void
     getState: () => RootStateType
-    dispatch: (action: AddPostActionType | UpdateNewPostTextType) => void
+    dispatch: (action: ActionsTypes) => void
 }
+
+export type ActionsTypes = AddPostActionType | UpdateNewPostTextType | SendMessageBodyType | UpdateNewMessageBodyType
 
 export type AddPostActionType = {
     type: "ADD_POST"
@@ -49,6 +54,15 @@ export type AddPostActionType = {
 export type UpdateNewPostTextType = {
     type: "UPDATE_NEW_POST_TEXT"
     newPostText: string
+}
+
+export type SendMessageBodyType = {
+    type: "SEND_MESSAGE_BODY"
+}
+
+export type UpdateNewMessageBodyType = {
+    type: "UPDATE_NEW_MESSAGE_BODY"
+    newMessageBody: string
 }
 
 export let store: StoreType = {
@@ -88,7 +102,8 @@ export let store: StoreType = {
                 {id: 3, message: "How are you?"},
                 {id: 4, message: "I goooooood"},
                 {id: 5, message: "I am learn react"},
-            ]
+            ],
+            newMessageBody: ""
         }
     },
     getState() {
@@ -117,12 +132,24 @@ export let store: StoreType = {
         } else if (action.type === UPDATE_NEW_POST_TEXT) {
             this._state.profilePage.newPostText = action.newPostText
             this.rerenderEntireTree()
+        } else if (action.type === SEND_MESSAGE_BODY) {
+            if (this._state.dialogsPage.newMessageBody) {
+                this._state.dialogsPage.messages.push({id: 6, message: this._state.dialogsPage.newMessageBody})
+                this._state.dialogsPage.newMessageBody = ""
+            }
+            this.rerenderEntireTree()
+        } else if (action.type === UPDATE_NEW_MESSAGE_BODY) {
+            this._state.dialogsPage.newMessageBody = action.newMessageBody
+            this.rerenderEntireTree()
         }
     }
 }
 
 export const addPostActionCreator = (): AddPostActionType => ({type: ADD_POST})
 export const updateNewPostActionCreator = (text: string): UpdateNewPostTextType => ({type: UPDATE_NEW_POST_TEXT, newPostText: text})
+
+export const sendMessageBodyActionCreator = (): SendMessageBodyType => ({type: SEND_MESSAGE_BODY})
+export const updateNewMessageBodyActionCreator = (text: string): UpdateNewMessageBodyType => ({type: UPDATE_NEW_MESSAGE_BODY, newMessageBody: text})
 
 //@ts-ignore
 window.store = store

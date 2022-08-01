@@ -2,11 +2,11 @@ import React from 'react';
 import s from "./Profile.module.css"
 import {MyPosts} from "./Posts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
-import {AddPostActionType, ProfilePageType, UpdateNewPostTextType} from "../Redux/State";
+import {ActionsTypes, AddPostActionType, ProfilePageType, UpdateNewPostTextType} from "../Redux/State";
 
 type ProfileType = {
     profilePage: ProfilePageType
-    dispatch: (action: AddPostActionType | UpdateNewPostTextType) => void
+    dispatch: (action: ActionsTypes) => void
 }
 
 export const Profile = (props: ProfileType) => {
