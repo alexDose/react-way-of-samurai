@@ -1,3 +1,5 @@
+const ADD_POST = "ADD_POST"
+const UPDATE_NEW_POST_TEXT = "UPDATE_NEW_POST_TEXT"
 
 type PostsType = {
     id: number
@@ -99,7 +101,7 @@ export let store: StoreType = {
         this.rerenderEntireTree = callback
     },
     dispatch(action){
-        if (action.type === "ADD_POST") {
+        if (action.type === ADD_POST) {
             let newPost: PostsType = {
                 id: 3,
                 imageAddress: "https://e7.pngegg.com/pngimages/340/946/png-clipart-avatar-user-computer-icons-software-developer-avatar-child-face.png",
@@ -112,12 +114,15 @@ export let store: StoreType = {
                 this._state.profilePage.newPostText = ""
             }
             this.rerenderEntireTree()
-        } else if (action.type === "UPDATE_NEW_POST_TEXT") {
+        } else if (action.type === UPDATE_NEW_POST_TEXT) {
             this._state.profilePage.newPostText = action.newPostText
             this.rerenderEntireTree()
         }
     }
 }
+
+export const addPostActionCreator = (): AddPostActionType => ({type: ADD_POST})
+export const updateNewPostActionCreator = (text: string): UpdateNewPostTextType => ({type: UPDATE_NEW_POST_TEXT, newPostText: text})
 
 //@ts-ignore
 window.store = store
