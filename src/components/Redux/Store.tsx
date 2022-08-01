@@ -1,9 +1,7 @@
-const ADD_POST = "ADD_POST"
-const UPDATE_NEW_POST_TEXT = "UPDATE_NEW_POST_TEXT"
-const SEND_MESSAGE_BODY = "SEND_MESSAGE_BODY"
-const UPDATE_NEW_MESSAGE_BODY = "UPDATE_NEW_MESSAGE_BODY"
+import {profileReducer} from "./profileReducer";
+import {dialogsReducer} from "./dialogsReducer";
 
-type PostsType = {
+export type PostsType = {
     id: number
     imageAddress: string
     text: string
@@ -116,40 +114,12 @@ export let store: StoreType = {
         this.rerenderEntireTree = callback
     },
     dispatch(action){
-        if (action.type === ADD_POST) {
-            let newPost: PostsType = {
-                id: 3,
-                imageAddress: "https://e7.pngegg.com/pngimages/340/946/png-clipart-avatar-user-computer-icons-software-developer-avatar-child-face.png",
-                text: this._state.profilePage.newPostText,
-                like: 0,
-                dislike: 0
-            };
-            if (this._state.profilePage.newPostText) {
-                this._state.profilePage.posts.push(newPost);
-                this._state.profilePage.newPostText = ""
-            }
-            this.rerenderEntireTree()
-        } else if (action.type === UPDATE_NEW_POST_TEXT) {
-            this._state.profilePage.newPostText = action.newPostText
-            this.rerenderEntireTree()
-        } else if (action.type === SEND_MESSAGE_BODY) {
-            if (this._state.dialogsPage.newMessageBody) {
-                this._state.dialogsPage.messages.push({id: 6, message: this._state.dialogsPage.newMessageBody})
-                this._state.dialogsPage.newMessageBody = ""
-            }
-            this.rerenderEntireTree()
-        } else if (action.type === UPDATE_NEW_MESSAGE_BODY) {
-            this._state.dialogsPage.newMessageBody = action.newMessageBody
-            this.rerenderEntireTree()
-        }
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+
+        this.rerenderEntireTree()
     }
 }
-
-export const addPostActionCreator = (): AddPostActionType => ({type: ADD_POST})
-export const updateNewPostActionCreator = (text: string): UpdateNewPostTextType => ({type: UPDATE_NEW_POST_TEXT, newPostText: text})
-
-export const sendMessageBodyActionCreator = (): SendMessageBodyType => ({type: SEND_MESSAGE_BODY})
-export const updateNewMessageBodyActionCreator = (text: string): UpdateNewMessageBodyType => ({type: UPDATE_NEW_MESSAGE_BODY, newMessageBody: text})
 
 //@ts-ignore
 window.store = store
