@@ -34,11 +34,19 @@ export type RootStateType = {
 
 export type StoreType = {
     _state: RootStateType
-    addPost: () => void
-    updateNewPostText: (newPostText: string) => void
     subscribe: (callback: () => void) => void
     rerenderEntireTree: () => void
     getState: () => RootStateType
+    dispatch: (action: AddPostActionType | UpdateNewPostTextType) => void
+}
+
+export type AddPostActionType = {
+    type: "ADD_POST"
+}
+
+export type UpdateNewPostTextType = {
+    type: "UPDATE_NEW_POST_TEXT"
+    newPostText: string
 }
 
 export let store: StoreType = {
@@ -87,26 +95,27 @@ export let store: StoreType = {
     rerenderEntireTree() {
     console.log("State changed")
     },
-    addPost() {
-        let newPost: PostsType = {
-            id: 3,
-            imageAddress: "https://e7.pngegg.com/pngimages/340/946/png-clipart-avatar-user-computer-icons-software-developer-avatar-child-face.png",
-            text: this._state.profilePage.newPostText,
-            like: 0,
-            dislike: 0
-        };
-        if (this._state.profilePage.newPostText) {
-            this._state.profilePage.posts.push(newPost);
-            this._state.profilePage.newPostText = ""
-        }
-        this.rerenderEntireTree()
-    },
-    updateNewPostText(newPostText: string) {
-        this._state.profilePage.newPostText = newPostText
-        this.rerenderEntireTree()
-    },
     subscribe(callback) {
         this.rerenderEntireTree = callback
+    },
+    dispatch(action){
+        if (action.type === "ADD_POST") {
+            let newPost: PostsType = {
+                id: 3,
+                imageAddress: "https://e7.pngegg.com/pngimages/340/946/png-clipart-avatar-user-computer-icons-software-developer-avatar-child-face.png",
+                text: this._state.profilePage.newPostText,
+                like: 0,
+                dislike: 0
+            };
+            if (this._state.profilePage.newPostText) {
+                this._state.profilePage.posts.push(newPost);
+                this._state.profilePage.newPostText = ""
+            }
+            this.rerenderEntireTree()
+        } else if (action.type === "UPDATE_NEW_POST_TEXT") {
+            this._state.profilePage.newPostText = action.newPostText
+            this.rerenderEntireTree()
+        }
     }
 }
 

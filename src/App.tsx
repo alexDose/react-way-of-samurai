@@ -26,8 +26,7 @@ export const App = (props: AppType) => {
                            render={() => <Dialogs state={props.store.getState().dialogsPage}/>}/>
 
                     <Route path="/profile/" render={() => <Profile profilePage={props.store.getState().profilePage}
-                                                                   addPost={props.store.addPost.bind(props.store)}
-                                                                   updateNewPostText={props.store.updateNewPostText.bind(props.store)}/>}/>
+                                                                   dispatch={props.store.dispatch.bind(props.store)}/>}/>
                     <Route path="/news/" component={News}/>
                     <Route path="/music/" component={Music}/>
                     <Route path="/settings/" component={Settings}/>
