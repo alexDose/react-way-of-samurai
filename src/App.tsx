@@ -23,7 +23,7 @@ export const App = (props: AppType) => {
                 <Navbar/>
                 <div className="app-wrapper-content">
                     <Route path="/dialogs/"
-                           render={() => <Dialogs state={props.store.getState().dialogsPage}/>}/>
+                           render={() => <Dialogs store={props.store}/>}/>
 
                     <Route path="/profile/" render={() => <Profile profilePage={props.store.getState().profilePage}
                                                                    dispatch={props.store.dispatch.bind(props.store)}/>}/>
