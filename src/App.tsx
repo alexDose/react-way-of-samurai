@@ -9,6 +9,7 @@ import {News} from "./components/News/News";
 import {Music} from "./components/Music/Music";
 import {Settings} from "./components/Settings/Settings";
 import {StoreType} from "./components/Redux/reduxStore";
+import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 
 type AppType = {
     store: StoreType
@@ -23,10 +24,9 @@ export const App = (props: AppType) => {
                 <Navbar/>
                 <div className="app-wrapper-content">
                     <Route path="/dialogs/"
-                           render={() => <Dialogs store={props.store}/>}/>
+                           render={() => <DialogsContainer store={props.store}/>}/>
 
-                    <Route path="/profile/" render={() => <Profile profilePage={props.store.getState().profilePage}
-                                                                   dispatch={props.store.dispatch.bind(props.store)}/>}/>
+                    <Route path="/profile/" render={() => <Profile store={props.store}/>}/>
                     <Route path="/news/" component={News}/>
                     <Route path="/music/" component={Music}/>
                     <Route path="/settings/" component={Settings}/>
