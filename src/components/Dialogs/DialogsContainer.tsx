@@ -1,24 +1,29 @@
-import React, {ChangeEvent} from "react";
-import s from "./Dialogs.module.css"
-import {DialogItem} from "./DialogItem/DialogItem";
-import {Message} from "./Messages/Message";
+import React from "react";
 import {sendMessageBodyActionCreator, updateNewMessageBodyActionCreator} from "../Redux/dialogsReducer";
-import {StoreType} from "../Redux/reduxStore";
 import {Dialogs} from "./Dialogs";
+import {StoreContext} from "../../StoreContext";
 
-export type DialogsContainerPropsType = {
-    store: StoreType
-}
+export const DialogsContainer = () => {
 
-export const DialogsContainer = (props: DialogsContainerPropsType) => {
+    return (
+        <StoreContext.Consumer>
+            {
+                (store) => {
 
-    const onSendMessageBody = () => {
-        props.store.dispatch(sendMessageBodyActionCreator())
-    }
+                    const onSendMessageBody = () => {
+                        store.dispatch(sendMessageBodyActionCreator())
+                    }
 
-    const onNewMessageChange = (value: string) => {
-        props.store.dispatch(updateNewMessageBodyActionCreator(value))
-    }
+                    const onNewMessageChange = (value: string) => {
+                        store.dispatch(updateNewMessageBodyActionCreator(value))
+                    }
 
-    return <Dialogs updateNewMessageBody={onNewMessageChange} sendMessageBody={onSendMessageBody} newMessageBody={props.store.getState().dialogsPage.newMessageBody} dialogsPage={props.store.getState().dialogsPage}/>
+                    return <Dialogs updateNewMessageBody={onNewMessageChange}
+                                    sendMessageBody={onSendMessageBody}
+                                    newMessageBody={store.getState().dialogsPage.newMessageBody}
+                                    dialogsPage={store.getState().dialogsPage}/>
+                }
+            }
+        </StoreContext.Consumer>
+    )
 }
