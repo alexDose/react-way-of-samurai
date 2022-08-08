@@ -1,9 +1,13 @@
 import React from "react";
-import {sendMessageBodyActionCreator, updateNewMessageBodyActionCreator} from "../Redux/dialogsReducer";
+import {
+    InitialStateDialogsType,
+    sendMessageBodyActionCreator,
+    updateNewMessageBodyActionCreator
+} from "../Redux/dialogsReducer";
 import {Dialogs} from "./Dialogs";
 import {connect} from "react-redux";
 import {Dispatch} from "redux";
-import {RootStateType} from "../Redux/Store";
+import {StoreType} from "../Redux/reduxStore";
 
 /*export const DialogsContainer = () => {
 
@@ -22,7 +26,6 @@ import {RootStateType} from "../Redux/Store";
 
                     return <Dialogs updateNewMessageBody={onNewMessageChange}
                                     sendMessageBody={onSendMessageBody}
-                                    newMessageBody={store.getState().dialogsPage.newMessageBody}
                                     dialogsPage={store.getState().dialogsPage}/>
                 }
             }
@@ -30,10 +33,13 @@ import {RootStateType} from "../Redux/Store";
     )
 }*/
 
-const mapStateToProps = (state: RootStateType) => {
+type MapStatePropsType = {
+    dialogsPage: InitialStateDialogsType
+}
+
+const mapStateToProps = (state: StoreType): MapStatePropsType => {
     return {
         dialogsPage: state.dialogsPage,
-        newMessageBody: state.dialogsPage.newMessageBody
     }
 }
 

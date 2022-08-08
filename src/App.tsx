@@ -10,11 +10,11 @@ import {Settings} from "./components/Settings/Settings";
 import {StoreType} from "./components/Redux/reduxStore";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 
-type AppType = {
+/*type AppType = {
     store: StoreType
-}
+}*/
 
-export const App = (props: AppType) => {
+export const App = (/*props: AppType*/) => {
 
     return (
         <div className="app-wrapper">
@@ -22,7 +22,7 @@ export const App = (props: AppType) => {
             <Navbar/>
             <div className="app-wrapper-content">
                 <Route path="/dialogs/" render={() => <DialogsContainer/>}/>
-                <Route path="/profile/" render={() => <Profile store={props.store}/>}/>
+                <Route path="/profile/" render={() => <Profile/>}/>
                 <Route path="/news/" component={News}/>
                 <Route path="/music/" component={Music}/>
                 <Route path="/settings/" component={Settings}/>

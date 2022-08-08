@@ -7,7 +7,6 @@ import {DialogsPageType} from "../Redux/Store";
 export type DialogsPropsType = {
     updateNewMessageBody: (value: string) => void
     sendMessageBody: () => void
-    newMessageBody: string
     dialogsPage: DialogsPageType
 }
 
@@ -32,7 +31,7 @@ export const Dialogs = (props: DialogsPropsType) => {
             <div className={s.messages}>
                 <div>{messagesElements}</div>
                 <div>
-                    <div><textarea onChange={onNewMessageChange} value={props.newMessageBody} placeholder={"enter your message..."}></textarea>
+                    <div><textarea onChange={onNewMessageChange} value={props.dialogsPage.newMessageBody} placeholder={"enter your message..."}></textarea>
                     </div>
                     <div>
                         <button onClick={onSendMessageBody}>Send</button>

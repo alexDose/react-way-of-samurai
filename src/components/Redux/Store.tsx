@@ -1,7 +1,7 @@
 import {profileReducer} from "./profileReducer";
 import {dialogsReducer} from "./dialogsReducer";
 
-export type PostsType = {
+type PostsType = {
     id: number
     imageAddress: string
     text: string
