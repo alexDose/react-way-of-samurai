@@ -37,13 +37,18 @@ type MapStatePropsType = {
     dialogsPage: InitialStateDialogsType
 }
 
+type MapDispatchPropsType = {
+    updateNewMessageBody: (value: string) => void
+    sendMessageBody: () => void
+}
+
 const mapStateToProps = (state: StoreType): MapStatePropsType => {
     return {
         dialogsPage: state.dialogsPage,
     }
 }
 
-const mapDispatchToProps = (dispatch: Dispatch) => {
+const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
     return {
         updateNewMessageBody: (value: string) => {
             dispatch(updateNewMessageBodyActionCreator(value))

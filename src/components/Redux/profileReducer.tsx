@@ -1,4 +1,4 @@
-import {AddPostActionType, UpdateNewPostTextType} from "./Store";
+import {ActionsTypes, AddPostActionType, UpdateNewPostTextType} from "./Store";
 
 const ADD_POST = "ADD_POST"
 const UPDATE_NEW_POST_TEXT = "UPDATE_NEW_POST_TEXT"
@@ -33,7 +33,7 @@ let initialState = {
     newPostText: "hello"
 }
 
-export const profileReducer = (state: InitialStateProfileType = initialState, action: any): InitialStateProfileType => {
+export const profileReducer = (state: InitialStateProfileType = initialState, action: ActionsTypes): InitialStateProfileType => {
     switch (action.type) {
         case ADD_POST:
             let newPost: PostsType = {
@@ -57,4 +57,7 @@ export const profileReducer = (state: InitialStateProfileType = initialState, ac
 }
 
 export const addPostActionCreator = (): AddPostActionType => ({type: ADD_POST})
-export const updateNewPostActionCreator = (text: string): UpdateNewPostTextType => ({type: UPDATE_NEW_POST_TEXT, newPostText: text})
+export const updateNewPostActionCreator = (text: string): UpdateNewPostTextType => ({
+    type: UPDATE_NEW_POST_TEXT,
+    newPostText: text
+})

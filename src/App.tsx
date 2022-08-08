@@ -7,14 +7,9 @@ import {Route} from "react-router-dom";
 import {News} from "./components/News/News";
 import {Music} from "./components/Music/Music";
 import {Settings} from "./components/Settings/Settings";
-import {StoreType} from "./components/Redux/reduxStore";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 
-/*type AppType = {
-    store: StoreType
-}*/
-
-export const App = (/*props: AppType*/) => {
+export const App = () => {
 
     return (
         <div className="app-wrapper">

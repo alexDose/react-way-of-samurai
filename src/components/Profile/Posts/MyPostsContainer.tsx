@@ -35,6 +35,11 @@ export const MyPostsContainer = () => {
 }
 */
 
+type MapDispatchPropsType = {
+    updateNewPostText: (value: string) => void
+    addPost: () => void
+}
+
 const mapStateToProps = (state: StoreType): InitialStateProfileType => {
     return {
         posts: state.profilePage.posts,
@@ -42,7 +47,7 @@ const mapStateToProps = (state: StoreType): InitialStateProfileType => {
     }
 }
 
-const mapDispatchToProps = (dispatch: Dispatch) => {
+const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
     return {
         updateNewPostText: (value: string) => {
             dispatch(updateNewPostActionCreator(value))
