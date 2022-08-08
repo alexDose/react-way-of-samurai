@@ -35,22 +35,26 @@ let initialState = {
 
 export const profileReducer = (state: InitialStateProfileType = initialState, action: ActionsTypes): InitialStateProfileType => {
     switch (action.type) {
-        case ADD_POST:
+        case ADD_POST: {
+            let stateCopy = {...state}
             let newPost: PostsType = {
                 id: 3,
                 imageAddress: "https://e7.pngegg.com/pngimages/340/946/png-clipart-avatar-user-computer-icons-software-developer-avatar-child-face.png",
-                text: state.newPostText,
+                text: stateCopy.newPostText,
                 like: 0,
                 dislike: 0
             }
-            if (state.newPostText) {
-                state.posts.push(newPost);
-                state.newPostText = ""
+            if (stateCopy.newPostText) {
+                stateCopy.posts = [...state.posts]
+                stateCopy.posts.push(newPost);
+                stateCopy.newPostText = ""
             }
-            return state
+            return stateCopy
+        }
         case UPDATE_NEW_POST_TEXT:
-            state.newPostText = action.newPostText
-            return state
+            let stateCopy = {...state}
+            stateCopy.newPostText = action.newPostText
+            return stateCopy
         default:
             return state
     }
