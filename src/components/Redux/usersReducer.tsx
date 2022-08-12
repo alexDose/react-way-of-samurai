@@ -2,7 +2,7 @@ const FOLLOW = "FOLLOW"
 const UNFOLLOW = "UNFOLLOW"
 const SET_USERS = "SET_USERS"
 
-type UserType = {
+export type UserType = {
     id: number
     followed: boolean
     fullName: string
@@ -31,29 +31,7 @@ type ActionsTypes = FollowActionType | UnfollowActionType | SetUsersActionType
 export type InitialStateUsersType = typeof initialState
 
 let initialState = {
-    users: [
-        {
-            id: 1,
-            followed: false,
-            fullName: "Dmitry",
-            status: "I am a boss",
-            location: {city: "Minsk", country: "Belarus"}
-        },
-        {
-            id: 2,
-            followed: true,
-            fullName: "Sasha",
-            status: "I am a boss too",
-            location: {city: "Moscow", country: "Russia"}
-        },
-        {
-            id: 3,
-            followed: false,
-            fullName: "Andrew",
-            status: "I am a boss too",
-            location: {city: "Kiev", country: "Ukraine"}
-        }
-    ] as Array<UserType>
+    users: [] as Array<UserType>
 }
 
 export const usersReducer = (state: InitialStateUsersType = initialState, action: ActionsTypes): InitialStateUsersType => {
