@@ -50,7 +50,7 @@ const mapStateToProps = (state: StoreType): MapStatePropsType => {
 
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
     return {
-        updateNewMessageBody: (value: string) => {
+        updateNewMessageBody: (value) => {
             dispatch(updateNewMessageBodyActionCreator(value))
         },
         sendMessageBody: () => {
