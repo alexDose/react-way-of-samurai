@@ -1,4 +1,4 @@
-import {UserType} from "../Users/Users";
+import {UserType} from "../Users/UsersClass";
 
 const FOLLOW = "FOLLOW"
 const UNFOLLOW = "UNFOLLOW"

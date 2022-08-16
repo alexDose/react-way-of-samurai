@@ -21,7 +21,7 @@ type UsersType = {
     users: Array<UserType>
 }
 
-export const Users = (props: UsersType) => {
+export const UsersDelete = (props: UsersType) => {
     const getUsers = () => {
         if (props.users.length === 0) {
             axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
