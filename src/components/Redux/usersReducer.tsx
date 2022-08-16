@@ -1,15 +1,8 @@
+import {UserType} from "../Users/Users";
+
 const FOLLOW = "FOLLOW"
 const UNFOLLOW = "UNFOLLOW"
 const SET_USERS = "SET_USERS"
-
-export type UserType = {
-    id: number
-    followed: boolean
-    fullName: string
-    status: string
-    location: { city: string, country: string }
-
-}
 
 type FollowActionType = {
     type: "FOLLOW"
