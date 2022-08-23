@@ -18,9 +18,9 @@ export type UserType = {
 type UsersType = {
     unfollow: (id: number) => void
     follow: (id: number) => void
-    setUsers: (users: any) => void
+    setUsers: (users: Array<UserType>) => void
     users: Array<UserType>
-    totalUserCount: number
+    totalUsersCount: number
     pageSize: number
     currentPage: number
     setCurrentPage: (pageNumber: number) => void
@@ -45,7 +45,7 @@ export class Users extends React.Component<UsersType> {
 
     render() {
 
-        let pageCount = Math.ceil(this.props.totalUserCount / this.props.pageSize)
+        let pageCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize)
 
         let pages = []
         for (let i = 1; i < pageCount; i++) {
@@ -54,7 +54,7 @@ export class Users extends React.Component<UsersType> {
 
         return <div>
             <div>
-                {pages.map(p => <span onClick={(e) => {this.onPageChanged(p)}} className={this.props.currentPage === p ? s.select: ''}>{p}</span>)}
+                {pages.map(p => <span onClick={(e) => {this.onPageChanged(p)}} className={this.props.currentPage === p ? s.select : ''}>{p}</span>)}
             </div>
             {
                 this.props.users.map(u => <div key={u.id}>
