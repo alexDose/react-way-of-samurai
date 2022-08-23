@@ -1,4 +1,4 @@
-import {UserType} from "../Users/UsersClass";
+import {UserType} from "../Users/UsersContainer";
 
 const FOLLOW = "FOLLOW"
 const UNFOLLOW = "UNFOLLOW"
@@ -39,7 +39,7 @@ export type InitialStateUsersType = typeof initialState
 let initialState = {
     users: [] as Array<UserType>,
     pageSize: 5,
-    currentPage: 2,
+    currentPage: 1,
     totalUsersCount: 0
 }
 
