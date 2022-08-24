@@ -3,6 +3,7 @@ import userPhoto from "../assets/images/user.png";
 import React from "react";
 import {UserType} from "./UsersContainer";
 import preloader from "../assets/images/Rocket.gif"
+import {NavLink} from "react-router-dom";
 
 type UsersType = {
     totalUsersCount: number
@@ -27,8 +28,8 @@ export const Users = (props: UsersType) => {
         <div>
             {props.isFetching && <img src={preloader}/>}
             {pages.map(p => <span key={p} onClick={(e) => {
-                    props.onPageChanged(p)
-                }} className={props.currentPage === p ? s.select : ''}>{p}</span>)}
+                props.onPageChanged(p)
+            }} className={props.currentPage === p ? s.select : ''}>{p}</span>)}
         </div>
 
         <br/>
@@ -36,7 +37,9 @@ export const Users = (props: UsersType) => {
             props.users.map(u => <div key={u.id}>
                 <span>
                     <div>
-                        <img className={s.userPhoto} src={u.photos.small != null ? u.photos.small : userPhoto}/>
+                        <NavLink to={'profile/' + u.id}>
+                            <img className={s.userPhoto} src={u.photos.small != null ? u.photos.small : userPhoto}/>
+                        </NavLink>
                     </div>
                     <div>
                         {u.followed

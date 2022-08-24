@@ -18,7 +18,6 @@ type MapDispatchPropsType = {
     setCurrentPage: (pageNumber: number) => void
     setTotalUsersCount: (totalCount: number) => void
     toggleIsFetching: (isFetching: boolean) => void
-
 }
 
 export type UserType = {
@@ -27,8 +26,8 @@ export type UserType = {
     uniqueUrlName: null | string
     photos: {
         small: null | string
-        large: null | string
-    },
+        large?: string
+    }
     status: null | string
     followed: boolean
 }
@@ -47,7 +46,7 @@ class UsersContainer extends React.Component<UsersType & MapDispatchPropsType> {
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
             this.props.toggleIsFetching(false)
             this.props.setUsers(response.data.items)
-            this.props.setTotalUsersCount(response.data.totalUsersCount)
+            this.props.setTotalUsersCount(response.data.totalCount)
         })
     }
 

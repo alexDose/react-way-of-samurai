@@ -1,5 +1,6 @@
 import {profileReducer} from "./profileReducer";
 import {dialogsReducer} from "./dialogsReducer";
+import {ProfileType} from "../Profile/ProfileContainer";
 
 type PostsType = {
     id: number
@@ -22,6 +23,7 @@ type MessagesType = {
 export type ProfilePageType = {
     posts: Array<PostsType>
     newPostText: string
+    profile: ProfileType | null
 }
 
 export type DialogsPageType = {
@@ -43,7 +45,7 @@ export type StoreType = {
     dispatch: (action: ActionsTypes) => void
 }
 
-export type ActionsTypes = AddPostActionType | UpdateNewPostTextType | SendMessageBodyType | UpdateNewMessageBodyType
+export type ActionsTypes = AddPostActionType | UpdateNewPostTextType | SendMessageBodyType | UpdateNewMessageBodyType | SetUserProfileType
 
 export type AddPostActionType = {
     type: "ADD_POST"
@@ -61,6 +63,11 @@ export type SendMessageBodyType = {
 export type UpdateNewMessageBodyType = {
     type: "UPDATE_NEW_MESSAGE_BODY"
     newMessageBody: string
+}
+
+export type SetUserProfileType = {
+    type: "SET_USER_PROFILE"
+    profile: ProfileType | null
 }
 
 export let store: StoreType = {
@@ -82,7 +89,8 @@ export let store: StoreType = {
                     dislike: 6
                 }
             ],
-            newPostText: "hello"
+            newPostText: "hello",
+            profile: null as ProfileType | null
         },
 
         dialogsPage: {
@@ -121,5 +129,5 @@ export let store: StoreType = {
     }
 }
 
-//@ts-ignore
-window.store = store
+/*//@ts-ignore
+window.store = store*/
