@@ -1,7 +1,7 @@
 import {connect} from "react-redux";
 import {StoreType} from "../Redux/reduxStore";
 import {
-    follow,
+    follow, getUsers,
     InitialStateUsersType, setCurrentPage,
     setTotalUsersCount,
     setUsers, toggleFollowingProgress,
@@ -9,7 +9,6 @@ import {
 } from "../Redux/usersReducer";
 import React from "react";
 import {Users} from "./Users";
-import {usersAPI} from "../../api/api";
 
 type MapDispatchPropsType = {
     follow: (userId: number) => void
@@ -19,6 +18,8 @@ type MapDispatchPropsType = {
     setTotalUsersCount: (totalCount: number) => void
     toggleIsFetching: (isFetching: boolean) => void
     toggleFollowingProgress: (isFetching: boolean, userId: number) => void
+    getUsers: (currentPage: number, pageSize: number) => void
+
 }
 
 export type UserType = {
@@ -44,21 +45,24 @@ export type UsersType = {
 
 class UsersContainer extends React.Component<UsersType & MapDispatchPropsType> {
     componentDidMount() {
-        this.props.toggleIsFetching(true)
+        this.props.getUsers(this.props.currentPage, this.props.pageSize)
+/*        this.props.toggleIsFetching(true)
         usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
             this.props.toggleIsFetching(false)
             this.props.setUsers(data.items)
             this.props.setTotalUsersCount(data.totalCount)
-        })
+        })*/
     }
 
     onPageChanged = (pageNumber: number) => {
-        this.props.toggleIsFetching(true)
+        this.props.getUsers(pageNumber, this.props.pageSize)
+
+/*        this.props.toggleIsFetching(true)
         this.props.setCurrentPage(pageNumber)
         usersAPI.getUsers(pageNumber, this.props.pageSize).then(data => {
             this.props.toggleIsFetching(false)
             this.props.setUsers(data.items)
-        })
+        })*/
     }
 
     render() {
@@ -119,5 +123,6 @@ export default connect(mapStateToProps, {
     setCurrentPage,
     setTotalUsersCount,
     toggleIsFetching,
-    toggleFollowingProgress
+    toggleFollowingProgress,
+    getUsers
 })(UsersContainer)
