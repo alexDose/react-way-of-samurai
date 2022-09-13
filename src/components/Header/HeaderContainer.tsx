@@ -1,10 +1,8 @@
 import React from 'react';
 import {Header} from "./Header";
-import axios from "axios";
 import {connect} from "react-redux";
 import {getAuthUserData, InitialStateUsersType} from "../Redux/authReducer";
 import {store, StoreType} from "../Redux/reduxStore";
-import {authApi} from "../../api/api";
 
 type DispatchType = {
     getAuthUserData: () => void
