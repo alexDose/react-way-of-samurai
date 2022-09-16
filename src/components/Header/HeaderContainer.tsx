@@ -1,8 +1,8 @@
 import React from 'react';
 import {Header} from "./Header";
 import {connect} from "react-redux";
-import {getAuthUserData, InitialStateUsersType} from "../Redux/authReducer";
-import {store, StoreType} from "../Redux/reduxStore";
+import {getAuthUserData, InitialStateUsersType} from "../../Redux/authReducer";
+import {store, StoreType} from "../../Redux/reduxStore";
 
 type DispatchType = {
     getAuthUserData: () => void

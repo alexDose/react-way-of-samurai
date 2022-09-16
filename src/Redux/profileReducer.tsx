@@ -1,7 +1,7 @@
 import {ActionsTypes, AddPostActionType, SetUserProfileType, UpdateNewPostTextType} from "./Store";
-import {ProfileType} from "../Profile/ProfileContainer";
+import {ProfileType} from "../components/Profile/ProfileContainer";
 import {Dispatch} from "redux";
-import {usersAPI} from "../../api/api";
+import {usersAPI} from "../api/api";
 
 const ADD_POST = "ADD_POST"
 const UPDATE_NEW_POST_TEXT = "UPDATE_NEW_POST_TEXT"

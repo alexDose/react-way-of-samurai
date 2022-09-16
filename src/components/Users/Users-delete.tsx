@@ -1,4 +1,4 @@
-import userPhoto from "../assets/images/user.png"
+import userPhoto from "../../assets/images/user.png"
 import s from "./Users.module.css"
 import axios from "axios";
 

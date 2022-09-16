@@ -1,8 +1,8 @@
 import s from "./Users.module.css";
-import userPhoto from "../assets/images/user.png";
+import userPhoto from "../../assets/images/user.png";
 import React from "react";
 import {UserType} from "./UsersContainer";
-import preloader from "../assets/images/Rocket.gif"
+import preloader from "../../assets/images/Rocket.gif"
 import {NavLink} from "react-router-dom";
 
 type UsersType = {

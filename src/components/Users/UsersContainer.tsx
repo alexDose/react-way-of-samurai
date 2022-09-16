@@ -1,14 +1,15 @@
 import {connect} from "react-redux";
-import {StoreType} from "../Redux/reduxStore";
+import {StoreType} from "../../Redux/reduxStore";
 import {
     follow, getUsers,
     InitialStateUsersType, setCurrentPage,
     setTotalUsersCount,
     setUsers, toggleFollowingProgress,
     toggleIsFetching, unfollow
-} from "../Redux/usersReducer";
+} from "../../Redux/usersReducer";
 import React from "react";
 import {Users} from "./Users";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 type MapDispatchPropsType = {
     follow: (userId: number) => void
@@ -116,7 +117,7 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
 }
 */
 
-export default connect(mapStateToProps, {
+export default withAuthRedirect(connect(mapStateToProps, {
     follow,
     unfollow,
     setUsers,
@@ -125,4 +126,4 @@ export default connect(mapStateToProps, {
     toggleIsFetching,
     toggleFollowingProgress,
     getUsers
-})(UsersContainer)
+})(UsersContainer))

@@ -2,11 +2,11 @@ import React from "react";
 import {
     addPostActionCreator, InitialStateProfileType,
     updateNewPostActionCreator
-} from "../../Redux/profileReducer";
+} from "../../../Redux/profileReducer";
 import {MyPosts} from "./MyPosts";
 import {connect} from "react-redux";
 import {Dispatch} from "redux";
-import {StoreType} from "../../Redux/reduxStore";
+import {StoreType} from "../../../Redux/reduxStore";
 
 /*
 export const MyPostsContainer = () => {

@@ -1,6 +1,6 @@
 import {profileReducer} from "./profileReducer";
 import {dialogsReducer} from "./dialogsReducer";
-import {ProfileType} from "../Profile/ProfileContainer";
+import {ProfileType} from "../components/Profile/ProfileContainer";
 
 type PostsType = {
     id: number

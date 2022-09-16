@@ -1,5 +1,5 @@
-import {UserType} from "../Users/UsersContainer";
-import {usersAPI} from "../../api/api";
+import {UserType} from "../components/Users/UsersContainer";
+import {usersAPI} from "../api/api";
 import {Dispatch} from "redux";
 
 const FOLLOW = "FOLLOW"
