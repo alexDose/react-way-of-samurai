@@ -1,7 +1,7 @@
 import React from "react";
-import s from "../Profile.module.css";
 import preloader from "../../../assets/images/Rocket.gif"
 import {ProfileType} from "../ProfileContainer";
+import {ProfileStatus} from "./ProfileStatus";
 
 export const ProfileInfo = (props: {profile: ProfileType | null}) => {
     if (!props.profile) {
@@ -11,7 +11,7 @@ export const ProfileInfo = (props: {profile: ProfileType | null}) => {
         <div>
             <div>
                 <img src={props.profile.photos.large}/>
-                ava+description
+                <ProfileStatus status={"Hello"}/>
             </div>
         </div>
     )
