@@ -24,6 +24,7 @@ export type ProfilePageType = {
     posts: Array<PostsType>
     newPostText: string
     profile: ProfileType | null
+    status: string
 }
 
 export type DialogsPageType = {
@@ -45,7 +46,7 @@ export type StoreType = {
     dispatch: (action: ActionsTypes) => void
 }
 
-export type ActionsTypes = AddPostActionType | UpdateNewPostTextType | SendMessageBodyType | UpdateNewMessageBodyType | SetUserProfileType
+export type ActionsTypes = AddPostActionType | UpdateNewPostTextType | SendMessageBodyType | UpdateNewMessageBodyType | SetUserProfileType | SetStatusType
 
 export type AddPostActionType = {
     type: "ADD_POST"
@@ -70,6 +71,11 @@ export type SetUserProfileType = {
     profile: ProfileType | null
 }
 
+export type SetStatusType = {
+    type: "SET_STATUS"
+    status: string
+}
+
 export let store: StoreType = {
     _state: {
         profilePage: {
@@ -90,7 +96,8 @@ export let store: StoreType = {
                 }
             ],
             newPostText: "hello",
-            profile: null as ProfileType | null
+            profile: null as ProfileType | null,
+            status: ""
         },
 
         dialogsPage: {

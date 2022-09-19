@@ -3,7 +3,13 @@ import preloader from "../../../assets/images/Rocket.gif"
 import {ProfileType} from "../ProfileContainer";
 import {ProfileStatus} from "./ProfileStatus";
 
-export const ProfileInfo = (props: {profile: ProfileType | null}) => {
+type ProfileInfoType = {
+    profile: ProfileType | null
+    status: string
+    updateStatus: (status: string) => void
+}
+
+export const ProfileInfo = (props: ProfileInfoType) => {
     if (!props.profile) {
         return <img src={preloader}/>
     }
@@ -11,7 +17,7 @@ export const ProfileInfo = (props: {profile: ProfileType | null}) => {
         <div>
             <div>
                 <img src={props.profile.photos.large}/>
-                <ProfileStatus status={"Hello"}/>
+                <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
             </div>
         </div>
     )

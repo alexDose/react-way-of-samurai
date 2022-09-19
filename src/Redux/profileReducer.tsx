@@ -1,11 +1,12 @@
 import {ActionsTypes, AddPostActionType, SetUserProfileType, UpdateNewPostTextType} from "./Store";
 import {ProfileType} from "../components/Profile/ProfileContainer";
 import {Dispatch} from "redux";
-import {usersAPI} from "../api/api";
+import {profileAPI, usersAPI} from "../api/api";
 
 const ADD_POST = "ADD_POST"
 const UPDATE_NEW_POST_TEXT = "UPDATE_NEW_POST_TEXT"
 const SET_USER_PROFILE = "SET_USER_PROFILE"
+const SET_STATUS = "SET_STATUS"
 
 export type PostsType = {
     id: number
@@ -35,7 +36,8 @@ let initialState = {
         }
     ] as Array<PostsType>,
     newPostText: "hello",
-    profile: null as ProfileType | null
+    profile: null as ProfileType | null,
+    status: ""
 }
 
 export const profileReducer = (state: InitialStateProfileType = initialState, action: ActionsTypes): InitialStateProfileType => {
@@ -65,6 +67,11 @@ export const profileReducer = (state: InitialStateProfileType = initialState, ac
                 profile: action.profile
             }
 
+        case SET_STATUS:
+            return {...state,
+                status: action.status
+            }
+
         default:
             return state
     }
@@ -76,9 +83,22 @@ export const updateNewPostActionCreator = (text: string): UpdateNewPostTextType 
     newPostText: text
 })
 export const setUserProfile = (profile: ProfileType): SetUserProfileType => ({type: SET_USER_PROFILE, profile})
+export const setStatus = (status: string) => ({type: SET_STATUS, status})
 export const getUserProfile = (userId: number) => (dispatch: Dispatch) => {
     usersAPI.getProfile(userId).then(res => {
         dispatch(setUserProfile(res.data))
+    })
+}
+export const getStatus = (userId: number) => (dispatch: Dispatch) => {
+    profileAPI.getStatus(userId).then(res => {
+        dispatch(setStatus(res.data))
+    })
+}
+export const updateStatus = (status: string) => (dispatch: Dispatch) => {
+    profileAPI.updateStatus(status).then(res => {
+        if (res.data.resultCode === 0) {
+            dispatch(setStatus(status))
+        }
     })
 }
 
