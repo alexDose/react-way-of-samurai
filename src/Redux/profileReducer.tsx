@@ -1,10 +1,9 @@
-import {ActionsTypes, AddPostActionType, SetUserProfileType, UpdateNewPostTextType} from "./Store";
+import {ActionsTypes, AddPostActionType, SetUserProfileType} from "./Store";
 import {ProfileType} from "../components/Profile/ProfileContainer";
 import {Dispatch} from "redux";
 import {profileAPI, usersAPI} from "../api/api";
 
 const ADD_POST = "ADD_POST"
-const UPDATE_NEW_POST_TEXT = "UPDATE_NEW_POST_TEXT"
 const SET_USER_PROFILE = "SET_USER_PROFILE"
 const SET_STATUS = "SET_STATUS"
 
@@ -35,7 +34,6 @@ let initialState = {
             dislike: 6
         }
     ] as Array<PostsType>,
-    newPostText: "hello",
     profile: null as ProfileType | null,
     status: ""
 }
@@ -48,19 +46,13 @@ export const profileReducer = (state: InitialStateProfileType = initialState, ac
             let newPost: PostsType = {
                 id: 3,
                 imageAddress: "https://e7.pngegg.com/pngimages/340/946/png-clipart-avatar-user-computer-icons-software-developer-avatar-child-face.png",
-                text: state.newPostText,
+                text: action.newPostText,
                 like: 0,
                 dislike: 0
             }
                 return {...state,
-                    posts: [...state.posts, newPost],
-                    newPostText: ""
+                    posts: [newPost, ...state.posts],
                 }
-
-        case UPDATE_NEW_POST_TEXT:
-            return {...state,
-                newPostText: action.newPostText
-            }
 
         case SET_USER_PROFILE:
             return {...state,
@@ -77,11 +69,7 @@ export const profileReducer = (state: InitialStateProfileType = initialState, ac
     }
 }
 
-export const addPostActionCreator = (): AddPostActionType => ({type: ADD_POST})
-export const updateNewPostActionCreator = (text: string): UpdateNewPostTextType => ({
-    type: UPDATE_NEW_POST_TEXT,
-    newPostText: text
-})
+export const addPostActionCreator = (newPostText: string): AddPostActionType => ({type: ADD_POST, newPostText})
 export const setUserProfile = (profile: ProfileType): SetUserProfileType => ({type: SET_USER_PROFILE, profile})
 export const setStatus = (status: string) => ({type: SET_STATUS, status})
 export const getUserProfile = (userId: number) => (dispatch: Dispatch) => {

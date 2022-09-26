@@ -22,7 +22,6 @@ type MessagesType = {
 
 export type ProfilePageType = {
     posts: Array<PostsType>
-    newPostText: string
     profile: ProfileType | null
     status: string
 }
@@ -30,7 +29,6 @@ export type ProfilePageType = {
 export type DialogsPageType = {
     dialogs: Array<DialogsType>
     messages: Array<MessagesType>
-    newMessageBody: string
 }
 
 export type RootStateType = {
@@ -46,19 +44,16 @@ export type StoreType = {
     dispatch: (action: ActionsTypes) => void
 }
 
-export type ActionsTypes = AddPostActionType | UpdateNewPostTextType | SendMessageBodyType | UpdateNewMessageBodyType | SetUserProfileType | SetStatusType
+export type ActionsTypes = AddPostActionType | SendMessageBodyType | UpdateNewMessageBodyType | SetUserProfileType | SetStatusType
 
 export type AddPostActionType = {
     type: "ADD_POST"
-}
-
-export type UpdateNewPostTextType = {
-    type: "UPDATE_NEW_POST_TEXT"
     newPostText: string
 }
 
 export type SendMessageBodyType = {
     type: "SEND_MESSAGE_BODY"
+    newMessageBody: string
 }
 
 export type UpdateNewMessageBodyType = {
@@ -95,7 +90,6 @@ export let store: StoreType = {
                     dislike: 6
                 }
             ],
-            newPostText: "hello",
             profile: null as ProfileType | null,
             status: ""
         },
@@ -115,8 +109,7 @@ export let store: StoreType = {
                 {id: 3, message: "How are you?"},
                 {id: 4, message: "I goooooood"},
                 {id: 5, message: "I am learn react"},
-            ],
-            newMessageBody: ""
+            ]
         }
     },
     getState() {
