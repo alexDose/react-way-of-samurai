@@ -1,20 +1,29 @@
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {Input} from "../common/FormsControls/FormsControls";
 import {required} from "../../Validators/validators";
+import {connect} from "react-redux";
+import {login} from "../../Redux/authReducer";
+import {Redirect} from "react-router-dom";
+import {StoreType} from "../../Redux/reduxStore";
 
 type FormDataType = {
-    login: string
+    email: string
     password: string
     rememberMe: boolean
+    isAuth: boolean
+}
+
+type LoginType = {
+    login: (email: string, password: string, rememberMe: boolean) => void
 }
 
 const LoginForm = (props: InjectedFormProps<FormDataType>) => {
     return <form onSubmit={props.handleSubmit}>
         <div>
-            <Field type="text" placeholder={"Login"} validate={[required]} name={"login"} component={Input}/>
+            <Field type="text" placeholder={"Email"} validate={[required]} name={"email"} component={Input}/>
         </div>
         <div>
-            <Field type="text" placeholder={"Password"} validate={[required]} name={"password"} component={Input}/>
+            <Field type="password" placeholder={"Password"} validate={[required]} name={"password"} component={Input}/>
         </div>
         <div>
             <Field type="checkbox" name={"rememberMe"} component={"input"}/> remember me
@@ -27,12 +36,21 @@ const LoginForm = (props: InjectedFormProps<FormDataType>) => {
 
 const LoginReduxForm = reduxForm<FormDataType>({form: "login"})(LoginForm)
 
-export const Login = () => {
+const Login = (props: LoginType) => {
     const onSubmit = (formData: FormDataType) => {
-        console.log(formData)
+        props.login(formData.email, formData.password, formData.rememberMe)
+    }
+    if (props.isAuth) {
+        return <Redirect to={"/profile"}/>
     }
     return <div>
         <h1>Login</h1>
         <LoginReduxForm onSubmit={onSubmit}/>
     </div>
 }
+
+const mapStateToProps = (state: StoreType) => {
+    isAuth: state.auth.isAuth
+}
+
+export default connect(mapStateToProps, {login})(Login)

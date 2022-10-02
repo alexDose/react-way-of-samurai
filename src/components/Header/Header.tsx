@@ -2,7 +2,7 @@ import React from 'react';
 import s from "./Header.module.css"
 import {NavLink} from "react-router-dom";
 
-export const Header = (props: {isAuth: boolean, login: null | string}) => {
+export const Header = (props: {isAuth: boolean, login: null | string, logout: () => void}) => {
     return (
         <header className={s.header}>
             <img
@@ -10,7 +10,7 @@ export const Header = (props: {isAuth: boolean, login: null | string}) => {
                 alt=""/>
             <div className={s.loginBlock}>
                 {props.isAuth
-                    ? props.login
+                    ? <div>{props.login} - <button onClick={props.logout}>Log Out</button></div>
                     : <NavLink to={'/login'}>Login</NavLink>}
             </div>
         </header>
