@@ -14,9 +14,8 @@ import {connect} from "react-redux";
 import {compose} from "redux";
 import {initializeApp} from "./Redux/appReducer";
 import {StoreType} from "./Redux/reduxStore";
-import preloader from "./assets/images/Rocket.gif";
 
-class App extends React.Component<{initializeApp: () => void, initialized: boolean}> {
+class App extends React.Component<{initializeApp: () => void}> {
     componentDidMount() {
         this.props.initializeApp()
     }
@@ -38,9 +37,9 @@ class App extends React.Component<{initializeApp: () => void, initialized: boole
         );
     }
 }
-const mapStateToProps = (state: StoreType) => {
+const mapStateToProps = (state: StoreType) => ({
     initialized: state.app.initialized
-}
+})
 
 export default compose<React.ComponentType>(
     withRouter,

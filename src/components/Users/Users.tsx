@@ -6,7 +6,7 @@ import preloader from "../../assets/images/Rocket.gif"
 import {NavLink} from "react-router-dom";
 
 type UsersType = {
-    totalUsersCount: number
+    totalCount: number
     pageSize: number
     onPageChanged: (p: number) => void
     currentPage: number
@@ -20,7 +20,7 @@ type UsersType = {
 
 export const Users = (props: UsersType) => {
 
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
+    let pagesCount = Math.ceil(props.totalCount / props.pageSize)
     let pages = []
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i)
