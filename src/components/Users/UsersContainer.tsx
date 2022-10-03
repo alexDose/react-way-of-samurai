@@ -9,7 +9,6 @@ import {
 } from "../../Redux/usersReducer";
 import React from "react";
 import {Users} from "./Users";
-import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 
 type MapDispatchPropsType = {
@@ -128,6 +127,4 @@ export default compose<React.ComponentType>(
         toggleIsFetching,
         toggleFollowingProgress,
         getUsers
-    }),
-    withAuthRedirect
-)(UsersContainer)
+    }))(UsersContainer)

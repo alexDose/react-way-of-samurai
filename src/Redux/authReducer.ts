@@ -1,6 +1,6 @@
 import {Dispatch} from "redux";
 import {authApi} from "../api/api";
-import {FormErrors, stopSubmit} from "redux-form";
+import {stopSubmit} from "redux-form";
 import {ThunkAction} from "redux-thunk";
 import {StoreType} from "./reduxStore";
 
@@ -51,7 +51,7 @@ export const setAuthUserData = (userId: undefined | string, email: string | null
 })
 
 export const getAuthUserData = () => (dispatch: Dispatch<SetUserDataActionType>) => {
-    authApi.me().then(res => {
+    return authApi.me().then(res => {
         if (res.data.resultCode === 0) {
             let {id, login, email} = res.data.data
             dispatch(setAuthUserData(id, email, login, true))

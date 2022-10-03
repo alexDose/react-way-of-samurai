@@ -29,9 +29,11 @@ export const Users = (props: UsersType) => {
     return <div>
         <div>
             {props.isFetching && <img src={preloader}/>}
-            {pages.map(p => <span key={p} onClick={(e) => {
-                props.onPageChanged(p)
-            }} className={props.currentPage === p ? s.select : ''}>{p}</span>)}
+            {pages.map(p => {
+                return <span key={p}
+                             onClick={(e) => {props.onPageChanged(p)}}
+                             className={props.currentPage === p ? s.select : ''}>{p}</span>
+            })}
         </div>
 
         <br/>
