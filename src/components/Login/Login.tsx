@@ -55,8 +55,8 @@ const Login:FC<LoginType> = (props) => {
     </div>
 }
 
-const mapStateToProps = (state: StoreType) => {
+const mapStateToProps = (state: StoreType) => ({
     isAuth: state.auth.isAuth
-}
+})
 
 export default connect(mapStateToProps, {login})(Login)
