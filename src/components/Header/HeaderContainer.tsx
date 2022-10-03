@@ -12,7 +12,7 @@ type MapStateType = {
     isAuth: boolean
     login: null | string
     email: null | string
-    userId: null | number
+    userId: undefined | string
 }
 
 class HeaderContainer extends React.Component<DispatchType & MapStateType> {

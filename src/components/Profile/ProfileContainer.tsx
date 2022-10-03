@@ -32,18 +32,18 @@ export type ProfileType = {
 type MapStateToPropsType = {
     profile: ProfileType | null
     status: string
-    authorizedUserId: null | number
+    authorizedUserId: undefined | string
     isAuth: boolean
 }
 
 type MapDispatchToPropsType = {
-    getUserProfile: (userId: null | number) => void
-    getStatus: (userId: null | number) => void
+    getUserProfile: (userId: undefined | string) => void
+    getStatus: (userId: undefined | string) => void
     updateStatus: (status: string) => void
 }
 
 type PathParamsType = {
-    userId: null | number
+    userId: string | undefined
 }
 
 type ProfileContainerType = RouteComponentProps<PathParamsType> & MapStateToPropsType & MapDispatchToPropsType
