@@ -1,7 +1,7 @@
 import React from "react";
 import preloader from "../../../assets/images/Rocket.gif"
 import {ProfileType} from "../ProfileContainer";
-import {ProfileStatus} from "./ProfileStatus";
+import {ProfileStatusWithHooks} from "./ProfileStatusWithHooks";
 
 type ProfileInfoType = {
     profile: ProfileType | null
@@ -17,7 +17,7 @@ export const ProfileInfo = (props: ProfileInfoType) => {
         <div>
             <div>
                 <img src={props.profile.photos.large}/>
-                <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
+                <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
             </div>
         </div>
     )
