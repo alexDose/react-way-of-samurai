@@ -4,10 +4,10 @@ import {stopSubmit} from "redux-form";
 import {ThunkAction} from "redux-thunk";
 import {StoreType} from "./reduxStore";
 
-const SET_USER_DATA = "SET_USER_DATA"
+const SET_USER_DATA = "auth/SET_USER_DATA"
 
 type SetUserDataActionType = {
-    type: "SET_USER_DATA"
+    type: typeof SET_USER_DATA
     userId: string | undefined
     email: string | null
     login: string | null
@@ -50,28 +50,25 @@ export const setAuthUserData = (userId: undefined | string, email: string | null
     type: SET_USER_DATA, userId, email, login, isAuth
 })
 
-export const getAuthUserData = () => (dispatch: Dispatch<SetUserDataActionType>) => {
-    return authApi.me().then(res => {
-        if (res.data.resultCode === 0) {
-            let {id, login, email} = res.data.data
-            dispatch(setAuthUserData(id, email, login, true))
-        }
-    })
+export const getAuthUserData = () => async (dispatch: Dispatch<SetUserDataActionType>) => {
+    let res = await authApi.me()
+    if (res.data.resultCode === 0) {
+        let {id, login, email} = res.data.data
+        dispatch(setAuthUserData(id, email, login, true))
+    }
 }
-export const login = (email: string, password: string, rememberMe: boolean): ThunkAction<void, StoreType, unknown, any> => (dispatch) => {
-    authApi.login(email, password, rememberMe).then(res => {
-        if (res.data.resultCode === 0) {
-            dispatch(getAuthUserData())
-        } else {
-            let message = res.data.messages.length > 0 ? res.data.messages[0] : "Some error"
-            dispatch(stopSubmit("login", {_error: message}))
-        }
-    })
+export const login = (email: string, password: string, rememberMe: boolean): ThunkAction<void, StoreType, unknown, any> => async (dispatch) => {
+    let res = await authApi.login(email, password, rememberMe)
+    if (res.data.resultCode === 0) {
+        dispatch(getAuthUserData())
+    } else {
+        let message = res.data.messages.length > 0 ? res.data.messages[0] : "Some error"
+        dispatch(stopSubmit("login", {_error: message}))
+    }
 }
-export const logout = () => (dispatch: Dispatch<SetUserDataActionType>) => {
-    authApi.logout().then(res => {
-        if (res.data.resultCode === 0) {
-            dispatch(setAuthUserData(undefined, null, null, false))
-        }
-    })
+export const logout = () => async (dispatch: Dispatch<SetUserDataActionType>) => {
+    let res = await authApi.logout()
+    if (res.data.resultCode === 0) {
+        dispatch(setAuthUserData(undefined, null, null, false))
+    }
 }

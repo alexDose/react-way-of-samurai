@@ -13,7 +13,7 @@ export type MyPostsType = {
 const maxLength10 = maxLengthCreator(10)
 
 
-let AddNewPostForm = (props: { handleSubmit: any }) => {
+let AddNewPostForm = React.memo((props: { handleSubmit: any }) => {
     return <form onSubmit={props.handleSubmit}>
         <div>
             New Post
@@ -23,12 +23,12 @@ let AddNewPostForm = (props: { handleSubmit: any }) => {
             <button>send</button>
         </div>
     </form>
-}
+})
 
 let AddNewPostFormRedux = reduxForm({form: "ProfileAddMewPostForm"})(AddNewPostForm)
 
 export const MyPosts = React.memo((props: MyPostsType) => {
-    console.log('asdas')
+    console.log('MyPost')
     const postsElements = props.posts.map(el => <Post key={el.id} imageAddress={el.imageAddress} text={el.text} dislike={el.dislike} like={el.like}/>)
 
     const onAddPost = (value: any) => {

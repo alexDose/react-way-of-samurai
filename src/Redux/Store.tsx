@@ -1,4 +1,4 @@
-import {profileReducer} from "./profileReducer";
+import {deletePost, profileReducer} from "./profileReducer";
 import {dialogsReducer} from "./dialogsReducer";
 import {ProfileType} from "../components/Profile/ProfileContainer";
 
@@ -44,7 +44,7 @@ export type StoreType = {
     dispatch: (action: ActionsTypes) => void
 }
 
-export type ActionsTypes = AddPostActionType | SendMessageBodyType | UpdateNewMessageBodyType | SetUserProfileType | SetStatusType
+export type ActionsTypes = AddPostActionType | SendMessageBodyType | UpdateNewMessageBodyType | SetUserProfileType | SetStatusType | ReturnType<typeof deletePost>
 
 export type AddPostActionType = {
     type: "ADD_POST"
