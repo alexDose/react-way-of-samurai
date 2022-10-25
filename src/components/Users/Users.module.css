@@ -1,6 +1,9 @@
 .userPhoto {
     width: 200px;
 }
+.pageNumber {
+    padding: 2px;
+}
 .select {
     font-weight: bold;
     text-decoration: underline;

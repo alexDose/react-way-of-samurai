@@ -1,9 +1,10 @@
 import s from "./Users.module.css";
 import userPhoto from "../../assets/images/user.png";
-import React from "react";
+import React, {FC} from "react";
 import {UserType} from "./UsersContainer";
 import preloader from "../../assets/images/Rocket.gif"
 import {NavLink} from "react-router-dom";
+import {Paginator} from "../common/Paginator/Paginator";
 
 type UsersType = {
     totalCount: number
@@ -18,22 +19,27 @@ type UsersType = {
     followingInProgress: Array<number>
 }
 
-export const Users = (props: UsersType) => {
+export const Users: FC<UsersType> = ({totalCount,pageSize, onPageChanged, currentPage, ...props}) => {
+/*
 
     let pagesCount = Math.ceil(props.totalCount / props.pageSize)
     let pages = []
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i)
     }
+*/
 
     return <div>
         <div>
             {props.isFetching && <img src={preloader}/>}
+            <Paginator totalItemsCount={totalCount} pageSize={pageSize} currentPage={currentPage} onPageChanged={onPageChanged} portionSize={10}/>
+{/*
             {pages.map(p => {
                 return <span key={p}
                              onClick={(e) => {props.onPageChanged(p)}}
                              className={props.currentPage === p ? s.select : ''}>{p}</span>
             })}
+*/}
         </div>
 
         <br/>
