@@ -20,3 +20,6 @@
 i {
     margin-bottom: 15px;
 }
+.mainPhoto {
+    max-width: 400px;
+}
