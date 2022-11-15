@@ -2,10 +2,10 @@ import React from "react";
 import s from "./Dialogs.module.css"
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Messages/Message";
-import {DialogsPageType} from "../../Redux/Store";
 import {Field, reduxForm} from "redux-form";
 import {Textarea} from "../common/FormsControls/FormsControls";
 import {maxLengthCreator, required} from "../../Validators/validators";
+import {DialogsPageType} from "../../Redux/dialogsReducer";
 
 export type DialogsPropsType = {
     updateNewMessageBody: (value: string) => void

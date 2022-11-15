@@ -1,6 +1,9 @@
-import {ActionsTypes, SendMessageBodyType, UpdateNewMessageBodyType} from "./Store";
-
 const SEND_MESSAGE_BODY = "SEND_MESSAGE_BODY"
+
+export type DialogsPageType = {
+    dialogs: Array<DialogsType>
+    messages: Array<MessagesType>
+}
 
 export type DialogsType = {
     id: number
@@ -11,6 +14,8 @@ export type MessagesType = {
     id: number
     message: string
 }
+
+export type ActionDialogsType = ReturnType<typeof sendMessageBodyActionCreator>
 
 export type InitialStateDialogsType = typeof initialState
 
@@ -32,7 +37,7 @@ let initialState = {
     ] as Array<MessagesType>
 }
 
-export const dialogsReducer = (state: InitialStateDialogsType = initialState, action: ActionsTypes): InitialStateDialogsType => {
+export const dialogsReducer = (state: InitialStateDialogsType = initialState, action: ActionDialogsType): InitialStateDialogsType => {
 
     switch (action.type) {
         case SEND_MESSAGE_BODY:
@@ -45,4 +50,4 @@ export const dialogsReducer = (state: InitialStateDialogsType = initialState, ac
     }
 }
 
-export const sendMessageBodyActionCreator = (newMessageBody: string): SendMessageBodyType => ({type: SEND_MESSAGE_BODY, newMessageBody})
+export const sendMessageBodyActionCreator = (newMessageBody: string) => ({type: SEND_MESSAGE_BODY, newMessageBody})

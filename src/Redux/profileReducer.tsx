@@ -1,4 +1,3 @@
-import {ActionsTypes, AddPostActionType, SetUserProfileType} from "./Store";
 import {ProfileType} from "../components/Profile/ProfileContainer";
 import {Dispatch} from "redux";
 import {profileAPI, usersAPI} from "../api/api";
@@ -17,7 +16,7 @@ export type PostsType = {
     dislike: number
 }
 
-type ActionsProfileTypes =
+export type ActionsProfileTypes =
     ReturnType<typeof addPostActionCreator>
     | ReturnType<typeof setUserProfile>
     | ReturnType<typeof setStatus>
@@ -86,8 +85,8 @@ export const profileReducer = (state: InitialStateProfileType = initialState, ac
     }
 }
 
-export const addPostActionCreator = (newPostText: string): AddPostActionType => ({type: ADD_POST, newPostText} as const)
-export const setUserProfile = (profile: ProfileType): SetUserProfileType => ({type: SET_USER_PROFILE, profile} as const)
+export const addPostActionCreator = (newPostText: string) => ({type: ADD_POST, newPostText} as const)
+export const setUserProfile = (profile: ProfileType) => ({type: SET_USER_PROFILE, profile} as const)
 export const setStatus = (status: string) => ({type: SET_STATUS, status} as const)
 export const deletePost = (id: number) => ({type: DELETE_POST, id} as const)
 export const savePhotoSuccess = (photo: any) => ({type: SAVE_PHOTO, photo} as const)
