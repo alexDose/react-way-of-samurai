@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/886.01d8de68.chunk.css","mappings":"AAAA,yBACI,WACJ,CACA,yBACI,WACJ,CACA,qBACI,eAAiB,CACjB,yBACJ","sources":["components/Users/Users.module.css"],"sourcesContent":[".userPhoto {\n    width: 200px;\n}\n.pageNumber {\n    padding: 2px;\n}\n.select {\n    font-weight: bold;\n    text-decoration: underline;\n}"],"names":[],"sourceRoot":""}
