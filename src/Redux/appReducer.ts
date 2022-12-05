@@ -6,7 +6,7 @@ const INITIALIZED_SUCCESS = "INITIALIZED_SUCCESS"
 
 type InitialStateType = typeof initialState
 
-type InitializedSuccessType = ReturnType<typeof initializedSuccess>
+export type InitializedSuccessType = ReturnType<typeof initializedSuccess>
 
 let initialState = {
     initialized: false

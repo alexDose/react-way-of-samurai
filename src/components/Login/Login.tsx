@@ -51,6 +51,10 @@ const Login:FC<LoginType> = (props) => {
     }
     return <div>
         <h1>Login</h1>
+        <p>
+            To log in get registered <a href={'https://social-network.samuraijs.com/'}
+                                        target={'_blank'}>here</a>
+        </p>
         <LoginReduxForm onSubmit={onSubmit}/>
     </div>
 }

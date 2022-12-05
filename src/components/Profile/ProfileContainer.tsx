@@ -2,7 +2,7 @@ import React from 'react';
 import {Profile} from "./Profile";
 import {connect} from "react-redux";
 import {StoreType} from "../../Redux/reduxStore";
-import {getStatus, getUserProfile, savePhoto, updateStatus} from "../../Redux/profileReducer";
+import {getStatus, getUserProfile, savePhoto, saveProfile, updateStatus} from "../../Redux/profileReducer";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
@@ -14,14 +14,7 @@ export type ProfileType = {
     lookingForAJobDescription: string
     fullName: string
     contacts: {
-        github: string
-        vk: string
-        facebook: string
-        instagram: string
-        twitter: string
-        website: string
-        youtube: string
-        mainLink: string
+        [key:string]: string
     }
     photos: {
         small: string
@@ -41,6 +34,7 @@ type MapDispatchToPropsType = {
     getStatus: (userId: undefined | string) => void
     updateStatus: (status: string) => void
     savePhoto: (file: any) => void
+    saveProfile: (profile: any) => void
 }
 
 type PathParamsType = {
@@ -73,7 +67,7 @@ class ProfileContainer extends React.Component<ProfileContainerType> {
     render() {
         return (
             <div>
-                <Profile isOwner={!this.props.match.params.userId} savePhoto={this.props.savePhoto} profile={this.props.profile} status={this.props.status}
+                <Profile saveProfile={this.props.saveProfile} isOwner={!this.props.match.params.userId} savePhoto={this.props.savePhoto} profile={this.props.profile} status={this.props.status}
                          updateStatus={this.props.updateStatus}/>
             </div>
         )
@@ -88,7 +82,7 @@ const mapStateToProps = (state: StoreType): MapStateToPropsType => ({
 })
 
 export default compose<React.ComponentType>(
-    connect(mapStateToProps, {getUserProfile, getStatus, updateStatus, savePhoto}),
+    connect(mapStateToProps, {getUserProfile, getStatus, updateStatus, savePhoto, saveProfile}),
     withRouter,
     withAuthRedirect
 )(ProfileContainer)

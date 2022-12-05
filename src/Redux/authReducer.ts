@@ -6,7 +6,7 @@ import {StoreType} from "./reduxStore";
 
 const SET_USER_DATA = "auth/SET_USER_DATA"
 
-type SetUserDataActionType = {
+export type SetUserDataActionType = {
     type: typeof SET_USER_DATA
     userId: string | undefined
     email: string | null

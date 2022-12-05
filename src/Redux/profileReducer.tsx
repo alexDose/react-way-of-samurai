@@ -1,6 +1,7 @@
 import {ProfileType} from "../components/Profile/ProfileContainer";
 import {Dispatch} from "redux";
 import {profileAPI, usersAPI} from "../api/api";
+import {StoreType, ThunkType} from "./reduxStore";
 
 const ADD_POST = "ADD_POST"
 const SET_USER_PROFILE = "SET_USER_PROFILE"
@@ -109,6 +110,13 @@ export const savePhoto = (file: any) => async (dispatch: Dispatch) => {
     let res = await profileAPI.savePhoto(file)
     if (res.data.resultCode === 0) {
         dispatch(savePhotoSuccess(res.data.data.photos))
+    }
+}
+export const saveProfile = (profile: any): ThunkType => async (dispatch, getState) => {
+    const userId = getState().auth.userId
+    let res = await profileAPI.saveProfile(profile)
+    if (res.data.resultCode === 0) {
+        userId && await dispatch(getUserProfile(+userId))
     }
 }
 

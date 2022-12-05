@@ -47,7 +47,7 @@ type ToggleIsFollowingType = {
     userId: number
 }
 
-type ActionsTypes =
+export type ActionsUsersTypes =
     FollowActionType
     | UnfollowActionType
     | SetUsersActionType
@@ -67,7 +67,7 @@ let initialState = {
     followingInProgress: [] as Array<number>
 }
 
-export const usersReducer = (state: InitialStateUsersType = initialState, action: ActionsTypes): InitialStateUsersType => {
+export const usersReducer = (state: InitialStateUsersType = initialState, action: ActionsUsersTypes): InitialStateUsersType => {
 
     switch (action.type) {
 
