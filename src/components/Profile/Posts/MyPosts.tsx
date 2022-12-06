@@ -28,7 +28,7 @@ let AddNewPostForm = React.memo((props: { handleSubmit: any }) => {
 let AddNewPostFormRedux = reduxForm({form: "ProfileAddMewPostForm"})(AddNewPostForm)
 
 export const MyPosts = React.memo((props: MyPostsType) => {
-    console.log('MyPost')
+
     const postsElements = props.posts.map(el => <Post key={el.id} imageAddress={el.imageAddress} text={el.text} dislike={el.dislike} like={el.like}/>)
 
     const onAddPost = (value: any) => {

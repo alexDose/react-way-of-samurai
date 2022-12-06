@@ -2,7 +2,7 @@ import s from "../Profile.module.css";
 import React from "react";
 
 export type PostType = {
-    id?: number
+    id?: string
     imageAddress: string
     text: string
     like: number

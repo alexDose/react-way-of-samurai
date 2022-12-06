@@ -2,6 +2,7 @@ import {ProfileType} from "../components/Profile/ProfileContainer";
 import {Dispatch} from "redux";
 import {profileAPI, usersAPI} from "../api/api";
 import {StoreType, ThunkType} from "./reduxStore";
+import {v1} from "uuid";
 
 const ADD_POST = "ADD_POST"
 const SET_USER_PROFILE = "SET_USER_PROFILE"
@@ -10,7 +11,7 @@ const DELETE_POST = "DELETE_POST"
 const SAVE_PHOTO = "SAVE_PHOTO"
 
 export type PostsType = {
-    id: number
+    id: string
     imageAddress: string
     text: string
     like: number
@@ -29,14 +30,14 @@ export type InitialStateProfileType = typeof initialState
 let initialState = {
     posts: [
         {
-            id: 1,
+            id: v1(),
             imageAddress: "https://bipbap.ru/wp-content/uploads/2021/07/1551512888_2-730x617.jpg",
             text: "Hello",
             like: 15,
             dislike: 3
         },
         {
-            id: 2,
+            id: v1(),
             imageAddress: "https://shapka-youtube.ru/wp-content/uploads/2021/02/prikolnaya-avatarka-dlya-patsanov.jpg",
             text: "I don't know how this working",
             like: 4,
@@ -53,7 +54,7 @@ export const profileReducer = (state: InitialStateProfileType = initialState, ac
 
         case ADD_POST:
             let newPost: PostsType = {
-                id: 3,
+                id: v1(),
                 imageAddress: "https://e7.pngegg.com/pngimages/340/946/png-clipart-avatar-user-computer-icons-software-developer-avatar-child-face.png",
                 text: action.newPostText,
                 like: 0,
@@ -89,7 +90,7 @@ export const profileReducer = (state: InitialStateProfileType = initialState, ac
 export const addPostActionCreator = (newPostText: string) => ({type: ADD_POST, newPostText} as const)
 export const setUserProfile = (profile: ProfileType) => ({type: SET_USER_PROFILE, profile} as const)
 export const setStatus = (status: string) => ({type: SET_STATUS, status} as const)
-export const deletePost = (id: number) => ({type: DELETE_POST, id} as const)
+export const deletePost = (id: string) => ({type: DELETE_POST, id} as const)
 export const savePhotoSuccess = (photo: any) => ({type: SAVE_PHOTO, photo} as const)
 
 export const getUserProfile = (userId: number) => async (dispatch: Dispatch) => {

@@ -3,11 +3,7 @@ import {InjectedFormProps, reduxForm} from "redux-form";
 import {createField, Input, Textarea} from "../../common/FormsControls/FormsControls";
 import s from "../Profile.module.css"
 
-type PropsType = InjectedFormProps<any> & {
-    profile: any
-}
-
-const ProfileDataForm = (props: PropsType) => {
+const ProfileDataForm = (props: InjectedFormProps<any>) => {
 
     return <form onSubmit={props.handleSubmit}>
         <div><button>save</button></div>
@@ -23,13 +19,13 @@ const ProfileDataForm = (props: PropsType) => {
         <div>
             <b>About me: </b> {createField('About me', 'aboutMe', [], Textarea)}
         </div>
-        <div>
-            <b>Contacts: </b> {Object.keys(props.profile.contacts).map(key => {
-            return <div className={s.contact}>
-                <b>{key}: {createField(key, 'contacts.' + key, [], Input)}</b>
-            </div>
-        })}
-        </div>
+        {/*<div>*/}
+        {/*    <b>Contacts: </b> {Object.keys(props.profile.contacts).map(key => {*/}
+        {/*    return <div className={s.contact}>*/}
+        {/*        <b>{key}: {createField(key, 'contacts.' + key, [], Input)}</b>*/}
+        {/*    </div>*/}
+        {/*})}*/}
+        {/*</div>*/}
     </form>
 }
 

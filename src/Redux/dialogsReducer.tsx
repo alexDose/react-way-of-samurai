@@ -1,3 +1,5 @@
+import {v1} from "uuid";
+
 const SEND_MESSAGE_BODY = "SEND_MESSAGE_BODY"
 
 export type DialogsPageType = {
@@ -6,12 +8,12 @@ export type DialogsPageType = {
 }
 
 export type DialogsType = {
-    id: number
+    id: string
     name: string
 }
 
 export type MessagesType = {
-    id: number
+    id: string
     message: string
 }
 
@@ -21,19 +23,19 @@ export type InitialStateDialogsType = typeof initialState
 
 let initialState = {
     dialogs: [
-        {id: 1, name: "Anrei"},
-        {id: 2, name: "Anna"},
-        {id: 3, name: "Valera"},
-        {id: 4, name: "Denis"},
-        {id: 5, name: "Sveta"},
-        {id: 6, name: "Dmitry"}
+        {id: v1(), name: "Anrei"},
+        {id: v1(), name: "Anna"},
+        {id: v1(), name: "Valera"},
+        {id: v1(), name: "Denis"},
+        {id: v1(), name: "Sveta"},
+        {id: v1(), name: "Dmitry"}
     ] as Array<DialogsType>,
     messages: [
-        {id: 1, message: "Hello"},
-        {id: 2, message: "Hey"},
-        {id: 3, message: "How are you?"},
-        {id: 4, message: "I goooooood"},
-        {id: 5, message: "I am learn react"},
+        {id: v1(), message: "Hello"},
+        {id: v1(), message: "Hey"},
+        {id: v1(), message: "How are you?"},
+        {id: v1(), message: "I goooooood"},
+        {id: v1(), message: "I am learn react"},
     ] as Array<MessagesType>
 }
 
@@ -42,7 +44,7 @@ export const dialogsReducer = (state: InitialStateDialogsType = initialState, ac
     switch (action.type) {
         case SEND_MESSAGE_BODY:
             return {...state,
-                messages: [...state.messages, {id: 6, message: action.newMessageBody}]
+                messages: [...state.messages, {id: v1(), message: action.newMessageBody}]
             }
 
         default:
