@@ -2,7 +2,7 @@ import {applyMiddleware, combineReducers, createStore} from "redux";
 import {ActionsProfileTypes, profileReducer} from "./profileReducer";
 import {ActionDialogsType, dialogsReducer} from "./dialogsReducer";
 import {ActionsUsersTypes, usersReducer} from "./usersReducer";
-import {authReducer, SetUserDataActionType} from "./authReducer";
+import {AuthActionType, authReducer} from "./authReducer";
 import thunkMiddleware, {ThunkAction} from "redux-thunk";
 import {reducer as formReducer} from 'redux-form'
 import {appReducer, InitializedSuccessType} from "./appReducer";
@@ -21,7 +21,7 @@ export let store = createStore(rootReducer, applyMiddleware(thunkMiddleware))
 export type StoreType = ReturnType<typeof rootReducer>;
 
 export type RootActionsType = InitializedSuccessType
-    | SetUserDataActionType
+    | AuthActionType
     | ActionDialogsType
     | ActionsProfileTypes
     | ActionsUsersTypes

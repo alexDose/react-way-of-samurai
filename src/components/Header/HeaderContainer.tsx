@@ -12,6 +12,7 @@ type MapStateType = {
     login: null | string
     email: null | string
     userId: undefined | string
+    captchaUrl: null | string
 }
 
 class HeaderContainer extends React.Component<DispatchType & MapStateType> {
@@ -24,7 +25,8 @@ const mapStateToProps = (state: StoreType): InitialStateUsersType => ({
     isAuth: state.auth.isAuth,
     login: state.auth.login,
     email: state.auth.email,
-    userId: state.auth.userId
+    userId: state.auth.userId,
+    captchaUrl: state.auth.captchaUrl
 })
 
 export default connect (mapStateToProps, {logout})(HeaderContainer)

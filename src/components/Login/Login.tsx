@@ -30,6 +30,7 @@ const LoginForm = (props: InjectedFormProps<FormDataType>) => {
         <div>
             <Field type="checkbox" name={"rememberMe"} component={"input"}/> remember me
         </div>
+
         {props.error && <div className={s.formSummaryError}>
             {props.error}
         </div>
@@ -43,6 +44,7 @@ const LoginForm = (props: InjectedFormProps<FormDataType>) => {
 const LoginReduxForm = reduxForm<FormDataType>({form: "login"})(LoginForm)
 
 const Login:FC<LoginType> = (props) => {
+
     const onSubmit = (formData: FormDataType) => {
         props.login(formData.email, formData.password, formData.rememberMe)
     }
@@ -60,7 +62,8 @@ const Login:FC<LoginType> = (props) => {
 }
 
 const mapStateToProps = (state: StoreType) => ({
-    isAuth: state.auth.isAuth
+    isAuth: state.auth.isAuth,
+    captchaUrl: state.auth.captchaUrl
 })
 
 export default connect(mapStateToProps, {login})(Login)
